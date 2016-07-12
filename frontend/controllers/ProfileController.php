@@ -6,6 +6,7 @@ use Yii;
 use common\models\Profile;
 use common\models\ProfileSearch;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -35,6 +36,11 @@ class ProfileController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest){
+            Yii::$app->user->loginRequired();
+        } elseif (!Yii::$app->user->can('admin')){
+           throw new ForbiddenHttpException ('Access denied');          
+        }        
         $searchModel = new ProfileSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -51,6 +57,11 @@ class ProfileController extends Controller
      */
     public function actionView($id)
     {
+        if (Yii::$app->user->isGuest){
+            Yii::$app->user->loginRequired();
+        } elseif (!Yii::$app->user->can('editOwnProfile', ['profileId' => $id])) {
+            throw new ForbiddenHttpException('Access denied');
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);

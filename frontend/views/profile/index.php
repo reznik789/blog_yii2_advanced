@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\ProfileSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Profiles';
+$this->title = 'User\'s Profiles';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="profile-index">
@@ -24,8 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'user_id',
+            //'id',
+            [
+                'label' => 'Username',
+                'value' => 'user.username'
+            ],
             'first_name',
             'last_name',
             'about:ntext',

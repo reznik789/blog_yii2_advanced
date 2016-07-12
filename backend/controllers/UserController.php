@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\User;
 use common\models\search\UserSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
@@ -27,6 +28,30 @@ class UserController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create', 'update', 'view', 'index'],
+                'rules' => [
+                    // allow authenticated users
+                    [
+                        'allow' => true,
+                        'actions' => ['update', 'create', 'view', 'index'],
+                        'roles' => ['admin']
+                    ],
+                ],
+                'denyCallback' => function($rule, $action) {
+                    if (Yii::$app->user->isGuest) {
+                        Yii::$app->user->loginRequired();
+                    } elseif ($action->id == 'delete') {
+                        throw new ForbiddenHttpException('Only administrators can delete users.');
+                    } elseif ($action->id == 'update') {
+                        throw new ForbiddenHttpException('You have\'t permissions to update users.');
+                    } else {
+                        throw new ForbiddenHttpException('Access denied');
+                    }
+                }
+            ]
+
         ];
     }
 
@@ -36,11 +61,6 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
-        if (Yii::$app->user->isGuest){
-            Yii::$app->user->loginRequired();
-        } elseif (!Yii::$app->user->can('admin')) {
-            throw new ForbiddenHttpException('Access denied');
-        }
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -69,6 +89,7 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
+//
         $model = new User();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -88,6 +109,7 @@ class UserController extends Controller
      */
     public function actionUpdate($id)
     {
+//
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

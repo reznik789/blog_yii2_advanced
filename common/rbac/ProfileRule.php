@@ -8,6 +8,7 @@
 
 namespace common\rbac;
 
+use common\models\Profile;
 use yii\rbac\Rule;
 use yii\rbac\Item;
 
@@ -24,6 +25,7 @@ class ProfileRule extends Rule
      */
     public function execute($user, $item, $params)
     {
-        return isset($params['profileId']) ? \Yii::$app->user->id == $params['profileId'] : false;
+        $a = Profile::find()->where(['user_id' => \Yii::$app->user->id])->one()->id;
+        return isset($params['profileId']) ? Profile::find()->where(['user_id' => \Yii::$app->user->id])->one()->id == $params['profileId'] : false;
     }
 }

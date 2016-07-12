@@ -60,3 +60,14 @@
 [Tue Jul 12 10:54:02.724698 2016] [:error] [pid 5296] [client 127.0.0.1:56878] PHP  14. yii\\base\\View->render() /home/dev30/www/blog.loc/advanced/backend/views/user/update.php:19, referer: http://blog-admin.loc/user/view?id=4
 [Tue Jul 12 10:54:02.724705 2016] [:error] [pid 5296] [client 127.0.0.1:56878] PHP  15. yii\\base\\View->renderFile() /home/dev30/www/blog.loc/advanced/vendor/yiisoft/yii2/base/View.php:149, referer: http://blog-admin.loc/user/view?id=4
 [Tue Jul 12 10:54:02.724711 2016] [:error] [pid 5296] [client 127.0.0.1:56878] PHP  16. yii\\base\\View->renderPhpFile() /home/dev30/www/blog.loc/advanced/vendor/yiisoft/yii2/base/View.php:247, referer: http://blog-admin.loc/user/view?id=4
+[Tue Jul 12 13:12:31.515885 2016] [:error] [pid 9166] [client 127.0.0.1:58084] PHP Parse error:  syntax error, unexpected ';', expecting ']' in /home/dev30/www/blog.loc/advanced/backend/controllers/UserController.php on line 41
+[Tue Jul 12 13:12:31.515925 2016] [:error] [pid 9166] [client 127.0.0.1:58084] PHP Stack trace:
+[Tue Jul 12 13:12:31.515942 2016] [:error] [pid 9166] [client 127.0.0.1:58084] PHP   1. {main}() /home/dev30/www/blog.loc/advanced/backend/web/index.php:0
+[Tue Jul 12 13:12:31.515954 2016] [:error] [pid 9166] [client 127.0.0.1:58084] PHP   2. yii\\base\\Application->run() /home/dev30/www/blog.loc/advanced/backend/web/index.php:18
+[Tue Jul 12 13:12:31.515966 2016] [:error] [pid 9166] [client 127.0.0.1:58084] PHP   3. yii\\web\\Application->handleRequest() /home/dev30/www/blog.loc/advanced/vendor/yiisoft/yii2/base/Application.php:375
+[Tue Jul 12 13:12:31.515976 2016] [:error] [pid 9166] [client 127.0.0.1:58084] PHP   4. yii\\base\\Module->runAction() /home/dev30/www/blog.loc/advanced/vendor/yiisoft/yii2/web/Application.php:84
+[Tue Jul 12 13:12:31.515986 2016] [:error] [pid 9166] [client 127.0.0.1:58084] PHP   5. yii\\base\\Module->createController() /home/dev30/www/blog.loc/advanced/vendor/yiisoft/yii2/base/Module.php:448
+[Tue Jul 12 13:12:31.515996 2016] [:error] [pid 9166] [client 127.0.0.1:58084] PHP   6. yii\\base\\Module->createControllerByID() /home/dev30/www/blog.loc/advanced/vendor/yiisoft/yii2/base/Module.php:520
+[Tue Jul 12 13:12:31.516005 2016] [:error] [pid 9166] [client 127.0.0.1:58084] PHP   7. class_exists() /home/dev30/www/blog.loc/advanced/vendor/yiisoft/yii2/base/Module.php:562
+[Tue Jul 12 13:12:31.516015 2016] [:error] [pid 9166] [client 127.0.0.1:58084] PHP   8. spl_autoload_call() /home/dev30/www/blog.loc/advanced/vendor/yiisoft/yii2/base/Module.php:562
+[Tue Jul 12 13:12:31.516025 2016] [:error] [pid 9166] [client 127.0.0.1:58084] PHP   9. yii\\BaseYii::autoload() /home/dev30/www/blog.loc/advanced/vendor/yiisoft/yii2/base/Module.php:0

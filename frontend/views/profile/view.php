@@ -6,8 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Profile */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Profiles', 'url' => ['index']];
+$this->title = $model->user->username . " profile";
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="profile-view">
@@ -29,7 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'user_id',
+            [
+                'label' => 'Username',
+                'value' => $model->user->username
+            ],
             'first_name',
             'last_name',
             'about:ntext',
