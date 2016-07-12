@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use yii\helpers\Url;
 use yii\imagine\Image;
+use common\models\User;
 
 /**
  * This is the model class for table "test_profile".
@@ -54,7 +55,7 @@ class Profile extends \yii\db\ActiveRecord
             'first_name' => 'First Name',
             'last_name' => 'Last Name',
             'about' => 'About',
-            'imageFile' => Yii::t('user','Image File')
+            'imageFile' => 'Image File'
         ];
     }
 

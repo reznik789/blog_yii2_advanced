@@ -2,7 +2,9 @@
 
 namespace backend\models;
 
+use common\models\User;
 use Yii;
+
 
 /**
  * This is the model class for table "test_role".
@@ -49,6 +51,6 @@ class Role extends \yii\db\ActiveRecord
      */
     public function getUsers()
     {
-        return $this->hasMany(User::className(), ['role_id' => 'id']);
+        return $this->hasMany(User::className(), ['user_role' => 'id']);
     }
 }

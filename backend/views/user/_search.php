@@ -27,13 +27,13 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'email') ?>
 
+    <?php // echo $form->field($model, 'user_role') ?>
+
     <?php // echo $form->field($model, 'status') ?>
 
     <?php // echo $form->field($model, 'created_at') ?>
 
     <?php // echo $form->field($model, 'updated_at') ?>
-
-    <?php // echo $form->field($model, 'role_id') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
