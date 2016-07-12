@@ -62,8 +62,8 @@ class Profile extends \yii\db\ActiveRecord
     public function upload()
     {
         if ($this->imageFile) {
-            $path = Url::to('@webroot/images/photos/');
-            $filename = strtolower($this->name) . '.jpg';
+            $path = Url::to('@webroot/images/profile_photos/');
+            $filename = strtolower($this->user->username) . '.jpg';
             //$this->imageFile->saveAs($path . $filename);
             Image::frame($this->imageFile->tempName, 20, '00FF00',100)
                 ->save($path.$filename,['quality'=>90]);
@@ -73,7 +73,7 @@ class Profile extends \yii\db\ActiveRecord
 
     public function getPhotoInfo()
     {
-        $path = Url::to('@webroot/images/photos/');
+        $path = Url::to('@webroot/images/profile_photos/');
         $url = Url::to('@web/images/profile_photos/');
         $filename1 = strtolower($this->user->username) . '.jpg';
         $filename2 = strtolower($this->user->username) . '.png';
@@ -101,5 +101,19 @@ class Profile extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+    
+//    public static function findProfileModel($user_id) {
+//        if (($model = Profile::find()->where(['id' => $user_id])->one()) !== null) {
+//            return $model;
+//        }
+//    }
+
+    public function beforeSave($insert)
+    {
+       if (parent::beforeSave($insert)){
+           $this->upload();
+       }
+        return true;
     }
 }

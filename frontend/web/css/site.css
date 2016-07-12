@@ -109,3 +109,13 @@ a.desc:after {
 .nav > li > form > button:hover {
     text-decoration: none;
 }
+
+.user_profile_photo{
+    max-width: 150px;
+    margin-bottom: 30px;
+}
+
+.user_avatar {
+    width: 45px;
+    border-radius: 50%;
+}

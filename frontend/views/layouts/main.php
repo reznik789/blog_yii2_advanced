@@ -11,6 +11,8 @@ use frontend\assets\AppAsset;
 use common\widgets\Alert;
 use common\models\Profile;
 
+$model = Profile::find()->where(['user_id' => Yii::$app->user->id])->one();
+$img = Html::img($model->getPhotoInfo()['url'], ['alt' => $model->getPhotoInfo()['alt'], 'class' => "user_avatar"] );
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -45,9 +47,10 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
         $menuItems[] = [
-                        'label' => 'You profile',
+                        'label' => $img . " You profile",
                         'url' => ['/profile/view', 'id' => Profile::find()->where(['user_id' => \Yii::$app->user->id])->one()->id]
                         ];
+
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
@@ -60,6 +63,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
+        'encodeLabels' => false,
     ]);
     NavBar::end();
     ?>

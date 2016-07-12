@@ -32,6 +32,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '/profile/view/<id:[\d-]+>' => '/profile/view'
             ],
         ],
     ],
