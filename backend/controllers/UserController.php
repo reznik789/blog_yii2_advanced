@@ -6,6 +6,7 @@ use Yii;
 use common\models\User;
 use common\models\search\UserSearch;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -35,6 +36,11 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest){
+            Yii::$app->user->loginRequired();
+        } elseif (!Yii::$app->user->can('admin')) {
+            throw new ForbiddenHttpException('Access denied');
+        }
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
